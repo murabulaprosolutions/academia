@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academia Murabula — Inscreva-se</title>
+    <style>
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #f8faff;
+            color: #1e2a41;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a {
+            color: #1a2b4c;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ============================================================
+                   HEADER / NAV
+                   ============================================================ */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #e9edf4;
+        }
+
+        .logo {
+            max-height: 60px;
+            width: auto;
+        }
+
+        .header-cta {
+            background: #f05a28;
+            color: #fff;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+        .header-cta:hover {
+            background: #d84a1e;
+        }
+
+        /* ============================================================
+                   HERO
+                   ============================================================ */
+        .hero {
+            text-align: center;
+            padding: 3rem 0 2.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #1a2b4c;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 0 auto 0.5rem;
+        }
+        .hero h1 span {
+            color: #f05a28;
+        }
+
+        .hero .sub {
+            font-size: 1.2rem;
+            color: #3a4a6b;
+            max-width: 600px;
+            margin: 0 auto 1.2rem;
+        }
+
+        .badge-group {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+        }
+        .badge {
+            background: #eef3fc;
+            color: #1a2b4c;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #d0ddea;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: #f05a28;
+            color: #fff;
+            padding: 0.9rem 3rem;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(240, 90, 40, 0.3);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .hero-cta:hover {
+            background: #d84a1e;
+            transform: scale(1.02);
+        }
+
+        /* ============================================================
+                   PROVA SOCIAL (NÚMEROS)
+                   ============================================================ */
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.2rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            margin-bottom: 2.5rem;
+            border: 1px solid #e9edf4;
+        }
+        .social-proof .item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        .social-proof .item .num {
+            font-weight: 700;
+            color: #f05a28;
+            font-size: 1.2rem;
+        }
+
+        /* ============================================================
+                   SEÇÃO: CURSOS EM DESTAQUE
+                   ============================================================ */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a2b4c;
+            text-align: center;
+            margin-bottom: 0.3rem;
+        }
+        .section-desc {
+            text-align: center;
+            color: #5a6a8a;
+            margin-bottom: 2rem;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .course-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.25s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .course-card:hover {
+            box-shadow: 0 8px 24px rgba(26, 43, 76, 0.08);
+            transform: translateY(-3px);
+        }
+        .course-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .course-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a2b4c;
+            margin-bottom: 0.3rem;
+        }
+        .course-card p {
+            font-size: 0.9rem;
+            color: #5a6a8a;
+            flex: 1;
+            margin-bottom: 0.8rem;
+        }
+        .course-card .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #3a4a6b;
+            border-top: 1px solid #eef3fc;
+            padding-top: 0.7rem;
+            margin-top: auto;
+        }
+        .course-card .meta .price {
+            font-weight: 700;
+            color: #f05a28;
+        }
+        .course-card .btn-small {
+            background: #1a2b4c;
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .course-card .btn-small:hover {
+            background: #2a4b7c;
+        }
+
+        /* ============================================================
+                   SEÇÃO: TODOS OS CURSOS (LISTA COMPLETA)
+                   ============================================================ */
+        .all-courses {
+            background: #fff;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+        }
+        .all-courses h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a2b4c;
+            margin-bottom: 0.3rem;
+        }
+        .all-courses .sub {
+            color: #5a6a8a;
+            margin-bottom: 1.2rem;
+        }
+        .all-courses .course-tag {
+            display: inline-block;
+            background: #eef3fc;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 0.2rem 0.3rem;
+            border: 1px solid #dce2ec;
+            transition: background 0.2s, border-color 0.2s;
+            cursor: default;
+        }
+        .all-courses .course-tag:hover {
+            background: #dce5f2;
+            border-color: #b0c0d8;
+        }
+
+        /* ============================================================
+                   FORMULÁRIO
+                   ============================================================ */
+        .form-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 2rem 2rem 2.2rem;
+            box-shadow: 0 12px 40px rgba(26, 43, 76, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+        }
+        .form-card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #1a2b4c;
+        }
+        .form-card .form-desc {
+            color: #5a6a8a;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            color: #1e2a41;
+        }
+        .form-group label .required {
+            color: #e53e3e;
+            margin-left: 2px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid #dce2ec;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #fafcff;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1a2b4c;
+            box-shadow: 0 0 0 3px rgba(26, 43, 76, 0.1);
+            background: #fff;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #f05a28;
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 12px rgba(240, 90, 40, 0.25);
+        }
+        .btn-submit:hover {
+            background: #d84a1e;
+        }
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .legenda {
+            font-size: 0.8rem;
+            color: #7a8aa5;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        .footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6a7a95;
+            border-top: 1px solid #e9edf4;
+            padding: 1.5rem 0;
+            margin-top: 1rem;
+        }
+        .footer .contact {
+            font-weight: 500;
+            color: #1a2b4c;
+            margin-bottom: 0.25rem;
+        }
+        .footer .contact a {
+            color: #f05a28;
+            font-weight: 600;
+        }
+
+        /* ============================================================
+                   LOADING SPINNER
+                   ============================================================ */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .btn-submit .btn-text {
+            display: inline;
+        }
+        .btn-submit.loading .btn-text {
+            display: none;
+        }
+        .btn-submit.loading .spinner {
+            display: block;
+        }
+
+        /* ============================================================
+                   RESPONSIVIDADE
+                   ============================================================ */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .form-card {
+                padding: 1.5rem;
+            }
+            .social-proof {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.4rem;
+            }
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            .all-courses {
+                padding: 1.2rem;
+            }
+            .logo {
+                max-height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <div class="container">
+        <header class="header">
+            <img src="https://drive.google.com/uc?export=view&id=13jjGnQASg0zq5yVC93Nb0yr0TiZMAzII"
+            alt="Academia Murabula"
+            class="logo" />
+            <a href="#form" class="header-cta">👉 Inscreva-se</a>
+        </header>
+    </div>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero container">
+        <div class="badge-group">
+            <span class="badge">🎓 12 cursos disponíveis</span>
+            <span class="badge">📅 Início imediato</span>
+            <span class="badge">💻 100% online</span>
+        </div>
+        <h1>Capacite-se para o <span>futuro</span></h1>
+        <p class="sub">
+            Cursos práticos, acessíveis e desenhados para o mercado moçambicano.
+            Inscreva-se e transforme a sua carreira.
+        </p>
+        <a href="#form" class="hero-cta">✅ Quero garantir a minha vaga</a>
+    </section>
+
+    <!-- ============================================================
+    PROVA SOCIAL
+    ============================================================ -->
+    <div class="container">
+        <div class="social-proof">
+            <span class="item">📚 <span class="num">+800</span> alunos já confiam</span>
+            <span class="item">⭐ <span class="num">99%</span> de satisfação</span>
+            <span class="item">🎓 <span class="num">12</span> cursos práticos</span>
+            <span class="item">🏆 <span class="num">+7</span> anos de experiência</span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    CURSOS EM DESTAQUE (PRIORITÁRIOS)
+    ============================================================ -->
+    <section class="container">
+        <h2 class="section-title">📘 Cursos em Destaque</h2>
+        <p class="section-desc">Os 12 cursos prioritários da primeira temporada — escolha o seu e comece hoje.</p>
+
+        <div class="course-grid" id="courseGrid">
+            <!-- Os cards serão injetados via JavaScript -->
+        </div>
+    </section>
+
+    <!-- ============================================================
+    LISTA COMPLETA DE CURSOS (TODOS OS CURSOS)
+    ============================================================ -->
+    <section class="container">
+        <div class="all-courses">
+            <h2>📚 Todos os cursos disponíveis</h2>
+            <p class="sub">
+                Além dos 12 cursos prioritários, oferecemos outras formações mediante procura.
+                Se o curso que procura não está na lista, contacte-nos e avaliamos a abertura de turma.
+            </p>
+            <div id="allCoursesList">
+                <!-- Injetado via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FORMULÁRIO DE INSCRIÇÃO
+    ============================================================ -->
+    <section class="container" id="form">
+        <div class="form-card">
+            <h2>✍️ Quero garantir a minha vaga</h2>
+            <p class="form-desc">Preencha os dados abaixo e receba todas as informações sobre o curso escolhido.</p>
+
+            <form id="leadForm" novalidate>
+                <div class="form-group">
+                    <label for="nome">Nome completo <span class="required">*</span></label>
+                    <input type="text" id="nome" name="nome" placeholder="Ex: António João" required />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefone">WhatsApp <span class="required">*</span></label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="84 123 4567" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="curso">Curso pretendido <span class="required">*</span></label>
+                    <select id="curso" name="curso" required>
+                        <option value="">Selecione um curso…</option>
+                        <!-- As opções serão preenchidas via JavaScript -->
+                    </select>
+                </div>
+
+                <!-- Campos UTM (preenchidos via JS) -->
+                <input type="hidden" id="utm_source" name="utm_source" value="" />
+                <input type="hidden" id="utm_campaign" name="utm_campaign" value="" />
+
+                <button type="submit" id="submitBtn" class="btn-submit">
+                    <span class="btn-text">✅ Quero me inscrever</span>
+                    <span class="spinner"></span>
+                </button>
+                <p class="legenda">* Campos obrigatórios. Após o envio, finalize a inscrição no WhatsApp.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer container">
+        <div class="contact">
+            📞 WhatsApp: <a href="https://wa.me/258860769065" target="_blank">+258 86 076 9065</a>
+        </div>
+        <p>© 2026 Academia Murabula — Uma unidade da Murabula Pro Solutions E.I.</p>
+        <p style="font-size:0.75rem; margin-top:0.3rem; color:#9aabbf;">
+            Sede: Chimoio, Moçambique
+        </p>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ============================================================
+            // 1. DADOS DOS CURSOS
+            // ============================================================
+            const cursos = [
+                // ---- PRIORITÁRIOS (12) ----
+                { id: 1, nome: 'Microsoft Excel na Prática', icone: '📊', descricao: 'Domine o Excel com exercícios práticos e aplicações reais.',
+                    preco: '900 MZN', prioridade: true },
+                { id: 2, nome: 'Informática Básica', icone: '💻', descricao: 'Aprenda a usar o computador com autonomia e produtividade.',
+                    preco: '900 MZN', prioridade: true },
+                { id: 3, nome: 'Metodologia de Investigação Científica', icone: '🔬', descricao: 'Fundamentos da pesquisa científica do início ao fim.',
+                    preco: '900 MZN', prioridade: true },
+                { id: 4, nome: 'IA Aplicada à Investigação', icone: '🤖', descricao: 'Use IA para pesquisar, escrever e analisar dados com ética.',
+                    preco: '1.500 MZN', prioridade: true },
+                { id: 5, nome: 'Marketing e Gestão de Redes Sociais', icone: '📱', descricao: 'Estratégias práticas para redes sociais e marketing digital.',
+                    preco: '1.200 MZN', prioridade: true },
+                { id: 6, nome: 'Gestão de Recursos Humanos', icone: '👥', descricao: 'Ferramentas para recrutar, gerir e desenvolver equipas.',
+                    preco: '1.200 MZN', prioridade: true },
+                { id: 7, nome: 'Contabilidade Básica', icone: '📊', descricao: 'Princípios contabilísticos aplicados a pequenos negócios.',
+                    preco: '900 MZN', prioridade: true },
+                { id: 8, nome: 'Gestão de Pequenas e Médias Empresas', icone: '🏢', descricao: 'Organize e faça crescer a sua PME com ferramentas práticas.',
+                    preco: '1.200 MZN', prioridade: true },
+                { id: 9, nome: 'Secretariado Executivo', icone: '📋', descricao: 'Técnicas de gestão de agenda, comunicação e documentos.',
+                    preco: '1.200 MZN', prioridade: true },
+                { id: 10, nome: 'Empreendedorismo', icone: '🚀', descricao: 'Transforme ideias em negócios com plano de acção.',
+                    preco: '1.200 MZN', prioridade: true },
+                { id: 11, nome: 'IA Aplicada às PMEs', icone: '🤖', descricao: 'Automatize tarefas, marketing e atendimento com IA.',
+                    preco: '1.500 MZN', prioridade: true },
+                { id: 12, nome: 'Inglês Nível I', icone: '🇬🇧', descricao: 'Comunicação básica em inglês para o dia a dia.',
+                    preco: '900 MZN', prioridade: true },
+
+                // ---- OUTROS CURSOS (mediante procura) ----
+                { id: 13, nome: 'Oratória e Comunicação com Impacto', icone: '🎤',
+                    descricao: 'Fale em público com confiança e persuasão.', preco: 'Sob consulta', prioridade: false },
+                { id: 14, nome: 'Técnicas de Venda e Negociação', icone: '🤝',
+                    descricao: 'Aprenda a vender mais e a negociar melhor.', preco: 'Sob consulta', prioridade: false },
+                { id: 15, nome: 'Liderança e Gestão de Equipas', icone: '👔',
+                    descricao: 'Lidere equipas com motivação e resultados.', preco: 'Sob consulta', prioridade: false },
+                { id: 16, nome: 'Design Gráfico e Edição de Vídeo', icone: '🎨',
+                    descricao: 'Crie visuais profissionais com ferramentas acessíveis.', preco: 'Sob consulta',
+                    prioridade: false },
+                { id: 17, nome: 'Estatística e SPSS para Investigadores', icone: '📈',
+                    descricao: 'Análise de dados com SPSS e interpretação de resultados.', preco: 'Sob consulta',
+                    prioridade: false },
+                { id: 18, nome: 'PowerPoint para Defesas de Alto Impacto', icone: '📽️',
+                    descricao: 'Crie apresentações profissionais e memoráveis.', preco: 'Sob consulta', prioridade: false },
+                { id: 19, nome: 'Educação Financeira', icone: '💰',
+                    descricao: 'Organize as suas finanças pessoais e faça planos.', preco: 'Sob consulta',
+                    prioridade: false },
+                { id: 20, nome: 'Gestão do Tempo e Produtividade', icone: '⏳',
+                    descricao: 'Aumente a sua produtividade com técnicas comprovadas.', preco: 'Sob consulta',
+                    prioridade: false },
+                { id: 21, nome: 'Desenvolvimento Web (HTML, CSS, JavaScript)', icone: '🌐',
+                    descricao: 'Crie websites do zero com as tecnologias fundamentais.', preco: 'Sob consulta',
+                    prioridade: false },
+                { id: 22, nome: 'Francês para Negócios', icone: '🇫🇷',
+                    descricao: 'Comunicação profissional em francês para negócios.', preco: 'Sob consulta',
+                    prioridade: false },
+                { id: 23, nome: 'Preparação para Exames de Admissão', icone: '📝',
+                    descricao: 'Prepare-se para os exames de admissão ao ensino superior.', preco: 'Sob consulta',
+                    prioridade: false },
+                { id: 24, nome: 'Formação Pedagógica de Formadores', icone: '👨‍🏫',
+                    descricao: 'Capacite-se para formar outros profissionais com eficácia.', preco: 'Sob consulta',
+                    prioridade: false }
+            ];
+
+            // ============================================================
+            // 2. RENDERIZAR CARDS DOS CURSOS PRIORITÁRIOS
+            // ============================================================
+            const grid = document.getElementById('courseGrid');
+            const prioridade = cursos.filter(c => c.prioridade);
+            prioridade.forEach(curso => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `
+                            <div class="icon">${curso.icone}</div>
+                            <h3>${curso.nome}</h3>
+                            <p>${curso.descricao}</p>
+                            <div class="meta">
+                                <span class="price">${curso.preco}</span>
+                                <a href="#form" class="btn-small">Inscrever</a>
+                            </div>
+                        `;
+                grid.appendChild(card);
+            });
+
+            // ============================================================
+            // 3. RENDERIZAR LISTA DE TODOS OS CURSOS
+            // ============================================================
+            const allList = document.getElementById('allCoursesList');
+            const ul = document.createElement('div');
+            ul.style.display = 'flex';
+            ul.style.flexWrap = 'wrap';
+            ul.style.gap = '0.3rem';
+            cursos.forEach(curso => {
+                const tag = document.createElement('span');
+                tag.className = 'course-tag';
+                tag.textContent = `${curso.icone} ${curso.nome}`;
+                ul.appendChild(tag);
+            });
+            allList.appendChild(ul);
+
+            // ============================================================
+            // 4. POPULAR O SELECT DO FORMULÁRIO
+            // ============================================================
+            const select = document.getElementById('curso');
+            cursos.forEach(curso => {
+                const opt = document.createElement('option');
+                opt.value = curso.nome;
+                opt.textContent = `${curso.icone} ${curso.nome}`;
+                select.appendChild(opt);
+            });
+
+            // ============================================================
+            // 5. CAPTURAR UTMs
+            // ============================================================
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById('utm_source').value = urlParams.get('utm_source') || '';
+            document.getElementById('utm_campaign').value = urlParams.get('utm_campaign') || '';
+
+            // ============================================================
+            // 6. SUBMISSÃO DO FORMULÁRIO
+            // ============================================================
+            const form = document.getElementById('leadForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8iqOkAASoaw6gH3dXbw16dRkz6puUEf-n5TaBia3jfz39_c6s_pql9IUsI5RQLR1NZQ/exec';
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const nome = document.getElementById('nome').value.trim();
+                const telefone = document.getElementById('telefone').value.trim();
+                const curso = document.getElementById('curso').value;
+
+                if (!nome || !telefone || !curso) {
+                    alert('Por favor, preencha todos os campos obrigatórios (Nome, WhatsApp e Curso).');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.classList.add('loading');
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    })
+                    .then(() => {
+                        const leadId = 'LEAD-' + String(new Date().getTime()).slice(-6);
+                        const params = new URLSearchParams({
+                            lead_id: leadId,
+                            nome: data.nome,
+                            telefone: data.telefone,
+                            curso: data.curso
+                        });
+                        window.location.href = 'obrigado.html?' + params.toString();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao enviar:', error);
+                        alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('loading');
+                    });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
