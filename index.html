@@ -1244,7 +1244,14 @@
             <p>Transparência total nos valores e facilidades de pagamento</p>
         </div>
 
-        <div class="price-table-wrapper">
+        <!-- Botão para exportar -->
+        <div class="text-center mb-6">
+            <button onclick="exportToCSV()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition">
+                ⬇ Baixar Tabela em Excel (CSV)
+            </button>
+        </div>
+
+        <div class="price-table-wrapper" id="tabelaPrecos">
             <table class="price-table">
                 <thead>
                     <tr>
@@ -1606,6 +1613,31 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        // Exportar tabela para CSV
+        function exportToCSV() {
+            const table = document.querySelector("#tabelaPrecos table");
+            let csv = [];
+            const rows = table.querySelectorAll("tr");
+            
+            for (let i = 0; i < rows.length; i++) {
+                let row = [];
+                const cols = rows[i].querySelectorAll("td, th");
+                for (let j = 0; j < cols.length; j++) {
+                    row.push('"' + cols[j].innerText.replace(/"/g, '""') + '"');
+                }
+                csv.push(row.join(","));
+            }
+            
+            const csvFile = new Blob([csv.join("\n")], {type: "text/csv"});
+            const downloadLink = document.createElement("a");
+            downloadLink.download = "Tabela_Precos_Academia_Murabula.csv";
+            downloadLink.href = window.URL.createObjectURL(csvFile);
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
+
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(item => {
             item.addEventListener('click', () => {
@@ -1687,15 +1719,21 @@
             // Send POST request to Google Apps Script
             fetch(endpointURL, {
                 method: 'POST',
-                mode: 'no-cors', // Standard handling for GAS web apps
+                mode: 'no-cors', 
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             })
             .then(() => {
-                // Since mode 'no-cors' returns opaque response, we assume success and redirect to obrigado.html
-                window.location.href = 'obrigado.html';
+                // GUARDAR DADOS DE FORMA SEGURA ANTES DE REDIRECIONAR
+                sessionStorage.setItem('userName', formData.nome);
+                sessionStorage.setItem('userCurso', formData.curso);
+                
+                // Redirecionar com atraso mínimo para garantir persistência
+                setTimeout(() => {
+                    window.location.href = 'obrigado.html';
+                }, 200);
             })
             .catch(error => {
                 console.error('Erro ao submeter:', error);
