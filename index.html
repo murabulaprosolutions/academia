@@ -1695,51 +1695,46 @@
             e.preventDefault();
 
             const submitBtn = document.getElementById('submitBtn');
-            const originalBtnText = submitBtn.innerHTML;
-
-            // Loading state
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner"></span> A processar inscrição...';
+            submitBtn.innerHTML = '<span class="spinner"></span> A processar...';
 
-            const formData = {
-                nome: document.getElementById('nome').value.trim(),
-                telefone: document.getElementById('telefone').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                provincia: document.getElementById('provincia').value,
-                cidade: document.getElementById('cidade').value.trim(),
-                curso: document.getElementById('curso').value,
-                modalidade: document.getElementById('modalidade').value,
-                formaInscricao: document.getElementById('formaInscricao').value,
-                formaPagamento: document.getElementById('formaPagamento').value,
-                idTransacao: document.getElementById('idTransacao').value.trim() || 'N/A (Pré-inscrição)',
-                utmSource: document.getElementById('utmSource').value,
-                utmCampaign: document.getElementById('utmCampaign').value
-            };
+            // Criar URLSearchParams (o formato mais estável para Google Apps Script)
+            const formData = new URLSearchParams();
+            formData.append('nome', document.getElementById('nome').value);
+            formData.append('telefone', document.getElementById('telefone').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('provincia', document.getElementById('provincia').value);
+            formData.append('cidade', document.getElementById('cidade').value);
+            formData.append('curso', document.getElementById('curso').value);
+            formData.append('modalidade', document.getElementById('modalidade').value);
+            formData.append('formaInscricao', document.getElementById('formaInscricao').value);
+            formData.append('formaPagamento', document.getElementById('formaPagamento').value);
+            formData.append('idTransacao', document.getElementById('idTransacao').value || 'N/A');
+            formData.append('utmSource', document.getElementById('utmSource').value);
+            formData.append('utmCampaign', document.getElementById('utmCampaign').value);
 
-            // Send POST request to Google Apps Script
+            // Submissão usando fetch com x-www-form-urlencoded
             fetch(endpointURL, {
                 method: 'POST',
-                mode: 'no-cors', 
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
+                body: formData
             })
             .then(() => {
-                // GUARDAR DADOS DE FORMA SEGURA ANTES DE REDIRECIONAR
-                sessionStorage.setItem('userName', formData.nome);
-                sessionStorage.setItem('userCurso', formData.curso);
+                // Guardar dados no storage
+                const dataObj = Object.fromEntries(formData.entries());
+                Object.keys(dataObj).forEach(key => sessionStorage.setItem('form_' + key, dataObj[key]));
                 
-                // Redirecionar com atraso mínimo para garantir persistência
-                setTimeout(() => {
-                    window.location.href = 'obrigado.html';
-                }, 200);
+                window.location.href = 'obrigado.html';
             })
             .catch(error => {
-                console.error('Erro ao submeter:', error);
-                alert('Ocorreu um erro ao processar a sua inscrição. Por favor, tente novamente ou contacte-nos via WhatsApp.');
+                console.error('Erro:', error);
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
+                submitBtn.innerHTML = 'Inscrever-me';
+                
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4 text-center text-sm';
+                errorDiv.innerHTML = 'Erro no envio. Verifique a ligação ou o ID do Script.';
+                document.getElementById('enrollmentForm').appendChild(errorDiv);
+                setTimeout(() => errorDiv.remove(), 5000);
             });
         });
     </script>
